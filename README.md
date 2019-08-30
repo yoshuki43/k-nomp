@@ -35,7 +35,7 @@ If your pool uses ZNY-NOMP let us know and we will list your website here.
 * [mofumofu.me - BitZeny Mining Pool](https://zny.mofumofu.me/)
 * [人のプール](https://mining.zinntikumugai.xyz/)
 * [みんなのプール](https://www.minnano-pool.work/)
-* [SEMI-POOL](https://zny.semi-pool.com/)
+* [semipool.net](https://zny.semipool.net/)
 
 Usage
 =====
