@@ -5,5 +5,14 @@
     "peerMagic": "deadbeef",
     "peerMagicTestnet": "faceb00c",
     "blockTime": 60,
-    "txfee": 0.0001
+    "txfee": 0.0001,
+
+    "mainnet": {
+      "bech32": "cpu",
+      "bip32": {
+        "public": "0488B21E"
+      },
+      "pubKeyHash": "1C",
+      "scriptHash": "1E"
+    }
 }
