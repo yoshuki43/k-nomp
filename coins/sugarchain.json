@@ -1,0 +1,25 @@
+{
+    "name": "sugarchain",
+    "symbol": "SUGAR",
+    "algorithm": "YespowerSugar",
+    "peerMagic": "9feb4b9d",
+    "peerMagicTestnet": "b0119070",
+
+    "mainnet": {
+      "bech32": "sugar",
+      "bip32": {
+        "public": "0488b21e"
+      },
+      "pubKeyHash": "3f",
+      "scriptHash": "7d"
+    },
+
+    "testnet": {
+      "bech32": "tugar",
+      "bip32": {
+        "public": "043587cf"
+      },
+      "pubKeyHash": "42",
+      "scriptHash": "80"
+    }
+}
