@@ -215,7 +215,6 @@ module.exports = function(logger){
         });
 
     };
-    buildKeyScriptPage();
 
     var getPage = function(pageId){
         if (pageId in pageProcessed){
@@ -295,10 +294,6 @@ module.exports = function(logger){
             return;
         }
         next();
-    });
-
-    app.get('/key.html', function(req, res, next){
-        res.end(keyScriptProcessed);
     });
 
     //app.get('/stats/shares/:coin', usershares);
