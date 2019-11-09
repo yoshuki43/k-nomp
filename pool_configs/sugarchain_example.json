@@ -13,8 +13,8 @@
         "enabled": true,
         "paymentMode": "prop",
         "_comment_paymentMode":"prop, pplnt",
-        "paymentInterval": 120,
-        "minimumPayment": 0.1,
+        "paymentInterval": 600,
+        "minimumPayment": 10,
         "maxBlocksPerPayment": 3,
         "daemon": {
             "host": "127.0.0.1",
