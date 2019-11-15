@@ -80,6 +80,8 @@
             <a href="http://node1.zenchain.info:8886/tx/{{=it.stats.pools[pool].payments[p].txid}}"  title="View transaction" target="_blank">{{=it.stats.pools[pool].payments[p].blocks}}</a>
           {{ } else if (String(it.stats.pools[pool].name).startsWith("cpuchain")) { }}
             <a href="https://explorer.cpuchain.org/tx/{{=it.stats.pools[pool].payments[p].txid}}"  title="View transaction" target="_blank">{{=it.stats.pools[pool].payments[p].blocks}}</a>
+          {{ } else if (String(it.stats.pools[pool].name).startsWith("sugarchain")) { }}
+            <a href="https://1explorer.sugarchain.org//tx/{{=it.stats.pools[pool].payments[p].txid}}"  title="View transaction" target="_blank">{{=it.stats.pools[pool].payments[p].blocks}}</a>
           {{ } else { }}
           {{=it.stats.pools[pool].payments[p].blocks}}
           {{ } }}
