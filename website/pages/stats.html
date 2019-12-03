@@ -179,6 +179,8 @@
 						<a href="https://explorer.cpuchain.org/block/{{=block[0]}}" target="_blank">{{=block[2]}}</a>
 					{{ } else if (String(it.stats.pools[pool].name).startsWith("sugarchain")) { }}
 						<a href="https://1explorer.sugarchain.org/block/{{=block[0]}}" target="_blank">{{=block[2]}}</a>
+					{{ } else if (String(it.stats.pools[pool].name).startsWith("monacoin")) { }}
+						<a href="https://insight.electrum-mona.org/insight/block/{{=block[0]}}" target="_blank">{{=block[2]}}</a>
 					{{ } else { }}
 						{{=block[2]}}
 					{{ } }}
@@ -219,6 +221,8 @@
                                                 <a href="https://ytn.overemo.com/block/{{=block[0]}}" target="_blank">{{=block[2]}}</a>
 		    			{{ } else if (String(it.stats.pools[pool].name).startsWith("sugarchain")) { }}
                                                 <a href="https://1explorer.sugarchain.org/block/{{=block[0]}}" target="_blank">{{=block[2]}}</a>
+		    			{{ } else if (String(it.stats.pools[pool].name).startsWith("monacoin")) { }}
+                                                <a href="https://insight.electrum-mona.org/insight/block/{{=block[0]}}" target="_blank">{{=block[2]}}</a>
 					{{ } else { }}
 						{{=block[2]}}
 					{{ } }}
