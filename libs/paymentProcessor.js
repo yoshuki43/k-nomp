@@ -100,6 +100,7 @@ function SetupForPool(logger, poolOptions, setupFinished){
         var cmd = "validateaddress"
         if(poolOptions.BTCover17)
             cmd = "getaddressinfo"
+        if (poolOptions.address != false) {
         daemon.cmd(cmd, [poolOptions.address], function(result) {
             if (result.error){
                 logger.error(logSystem, logComponent, 'Error with payment processing daemon ' + JSON.stringify(result.error));
@@ -115,6 +116,8 @@ function SetupForPool(logger, poolOptions, setupFinished){
                 callback()
             }
         }, true);
+      }
+      else callback();
     }
     function validateTAddress (callback) {
         daemon.cmd('validateaddress', [poolOptions.tAddress], function(result) {
@@ -1414,16 +1417,41 @@ function SetupForPool(logger, poolOptions, setupFinished){
     };
 
 
+    function handleAddress(address) {
+      if (address.length === 40){
+          return util.addressFromEx(poolOptions.address, address);
+      }
+      else return address;
+    }
+
     var getProperAddress = function(address){
-        if (address.length >= 50){
-            logger.warning(logSystem, logComponent, 'Invalid address '+address+', convert to address '+(poolOptions.invalidAddress || poolOptions.address));
-            return (poolOptions.invalidAddress || poolOptions.address);
+        if (address.length === 40){
+            return util.addressFromEx(poolOptions.address, address);
         }
-        if (address.length <= 30) {
-            logger.warning(logSystem, logComponent, 'Invalid address '+address+', convert to address '+(poolOptions.invalidAddress || poolOptions.address));
-            return (poolOptions.invalidAddress || poolOptions.address);
-        }
-        return address;
+        else return address;
+      if (address != false) {
+        return handleAddress(address);
+      } else {
+        var addressToPay = '';
+
+        daemon.cmd('getnewaddress', [], function(result){
+            if (result.error){
+                callback(true);
+                return;
+            }
+            try {
+                addressToPay = result.data;
+            }
+            catch(e){
+                logger.error(logSystem, logComponent, 'Error getting a new address. Got: ' + result.data);
+                callback(true);
+            }
+
+        }, true, true);
+
+        return handleAddress(addressToPay);
+
+      }
     };
 
 }
