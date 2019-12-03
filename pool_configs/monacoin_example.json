@@ -2,6 +2,10 @@
     "enabled": false,
     "coin": "monacoin.json",
 
+    "blockIdentifier": "",
+    "_comment_blockIdentifier1": "a string embedded in the block to be mined. Used to identify the pool in Insight etc etc.",
+    "_comment_blockIdentifire2": "If this value equals null string, website.stratumHost in 'config.json' is used.",
+
     "address": "",
 
     "rewardRecipients": {
