@@ -2,7 +2,7 @@
     "name": "sugarchain",
     "symbol": "SUGAR",
     "algorithm": "sugarchain",
-    "blockTime": 90,
+    "blockTime": 5,
     "peerMagic": "9feb4b9d",
     "peerMagicTestnet": "b0119070",
 
