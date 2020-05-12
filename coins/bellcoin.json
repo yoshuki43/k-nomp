@@ -3,5 +3,7 @@
     "symbol": "BELL",
     "algorithm": "yespower",
     "blockTime": 30,
+    "peerMagic": "facebabe",
+    "peerMagicTestnet": "0b110907",
     "txfee": 0.0001
 }
