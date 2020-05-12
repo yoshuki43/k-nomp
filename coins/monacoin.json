@@ -2,5 +2,7 @@
     "name": "Monacoin",
     "symbol": "MONA",
     "algorithm": "lyra2re2",
+    "peerMagic": "fbc0b6db",
+    "peerMagicTestnet": "fbd2c8f1",
     "blockTime": 90
 }
