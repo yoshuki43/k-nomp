@@ -112,7 +112,25 @@
                     <div><i class="fa fa-rocket"></i><span id="statsWorkers{{=pool}}">{{=it.stats.pools[pool].workerCount}}</span> Workers</div>
                     <div><i class="fa fa-tachometer"></i><span id="statsHashrate{{=pool}}">{{=it.stats.pools[pool].hashrateString}}</span> (Now)</div>
 					<div><i class="fa fa-tachometer"></i><span id="statsHashrateAvg{{=pool}}">...</span> (Avg)</div>
-					<div><i class="fa fa-gavel"></i>Luck <span id="statsLuckDays{{=pool}}">{{=it.stats.pools[pool].luckDays}}</span> Days</div>
+					<div><i class="fa fa-gavel"></i>Luck: <span id="statsLuckDays{{=pool}}">
+                        {{
+                                function getReadableLuckTime(lucktime){
+                                        var luck = lucktime;
+                                        var timeUnits = [ ' Days', ' Hours', ' Minutes' ];
+                                        if (luck < 1) {
+                                                luck = luck * 24;
+                                                if (luck < 1) {
+                                                        luck = luck * 60;
+                                                        return luck.toFixed(0) + timeUnits[2];
+                                                } else {
+                                                return luck.toFixed(2) + timeUnits[1];
+                                        }
+                                }
+                                        return luck + timeUnits[0];
+                                }
+                                _luckTime =getReadableLuckTime(it.stats.pools[pool].luckDays);
+                        }}
+                                {{=_luckTime}}</span></div>
                     <div><i class="fa fa-bar-chart"></i>&nbsp;Share:&nbsp;<span id="statsHashPercent{{=pool}}">
 {{
     var percent=0.0;
