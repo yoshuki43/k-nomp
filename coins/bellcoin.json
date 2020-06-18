@@ -2,8 +2,11 @@
     "name": "Bellcoin",
     "symbol": "BELL",
     "algorithm": "yespower",
-    "blockTime": 30,
     "peerMagic": "facebabe",
-    "peerMagicTestnet": "0b110907",
-    "txfee": 0.0001
+    "txfee": 0.0001,
+    "blockTime": 30,
+    "explorer": {
+        "txURL": "https://explorer.bellcoin.web4u.jp/tx/",
+        "blockURL": "https://explorer.bellcoin.web4u.jp/block/"
+    }
 }

@@ -1,0 +1,7 @@
+{
+    "name": "Monacoin_testnet",
+    "symbol": "TMONA",
+    "algorithm": "lyra2re2",
+    "peerMagic": "fbd2c8f1",
+    "blockTime": 90
+}

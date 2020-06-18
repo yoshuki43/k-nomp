@@ -1,0 +1,7 @@
+{
+    "name": "Susucoin_testnet",
+    "symbol": "TUTU",
+    "algorithm": "sha256d",
+    "peerMagic": "0c120807",
+    "blockTime": 120
+}

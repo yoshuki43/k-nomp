@@ -1,24 +1,30 @@
 {
-    "enabled": false,
-    "coin": "yenten.json",
+    "enabled": true,
+    "coin": "monacoin.json",
+
+    "blockIdentifier": "",
+    "_comment_blockIdentifier1": "a string embedded in the block to be mined. Used to identify the pool in Insight etc etc.",
+    "_comment_blockIdentifire2": "If this value equals null string, website.stratumHost in 'config.json' is used.",
 
     "address": "",
+    "BTCover17": true,
+    "_comment_BTCover17": "If BTC 0.17 or higher, payment does not work please enable it",
 
     "rewardRecipients": {
         "": 1.0
     },
 
     "paymentProcessing": {
-	"minConf": 10,
+        "minConf": 10,
         "enabled": true,
         "paymentMode": "prop",
-        "_comment_paymentMode":"prop, pplnt",
+        "_comment_paymentMode": "prop, pplnt",
         "paymentInterval": 120,
         "minimumPayment": 0.1,
         "maxBlocksPerPayment": 3,
         "daemon": {
             "host": "127.0.0.1",
-            "port": 9982,
+            "port": 9402,
             "user": "username",
             "password": "password"
         }
@@ -26,9 +32,9 @@
 
     "tlsOptions": {
         "enabled": false,
-        "serverKey":"",
-        "serverCert":"",
-        "ca":""
+        "serverKey": "",
+        "serverCert": "",
+        "ca": ""
     },
 
     "ports": {
@@ -45,19 +51,22 @@
         }
     },
 
+    "poolId": "main",
+    "_comment_poolId": "use it for region identification: eu, us, asia or keep default if you have one stratum instance for one coin",
+
     "daemons": [
         {
             "host": "127.0.0.1",
-            "port": 9982,
+            "port": 9402,
             "user": "username",
             "password": "password"
         }
     ],
 
     "p2p": {
-        "enabled": false,
+        "enabled": true,
         "host": "127.0.0.1",
-        "port": 9981,
+        "port": 9401,
         "disableTransactions": true
     },
 

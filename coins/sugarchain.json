@@ -1,26 +1,19 @@
 {
-    "name": "sugarchain",
+    "name": "Sugarchain",
     "symbol": "SUGAR",
-    "algorithm": "sugarchain",
-    "blockTime": 5,
+    "algorithm": "yespowerSUGAR",
     "peerMagic": "9feb4b9d",
-    "peerMagicTestnet": "b0119070",
-
     "mainnet": {
-      "bech32": "sugar",
-      "bip32": {
-        "public": "0488b21e"
-      },
-      "pubKeyHash": "3f",
-      "scriptHash": "7d"
+        "bech32": "sugar",
+        "bip32": {
+            "public": "0488b21e"
+        },
+        "pubKeyHash": "3f",
+        "scriptHash": "7d"
     },
-
-    "testnet": {
-      "bech32": "tugar",
-      "bip32": {
-        "public": "043587cf"
-      },
-      "pubKeyHash": "42",
-      "scriptHash": "80"
+    "blockTime": 5,
+    "explorer": {
+        "txURL": "https://1explorer.sugarchain.org/tx/",
+        "blockURL": "https://1explorer.sugarchain.org/block/"
     }
 }

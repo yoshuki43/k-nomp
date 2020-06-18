@@ -1,0 +1,102 @@
+{
+    "enabled": true,
+    "coin": "koto.json",
+
+    "blockIdentifier": "",
+    "_comment_blockIdentifier1": "a string embedded in the block to be mined. Used to identify the pool in Insight etc etc.",
+    "_comment_blockIdentifire2": "If this value equals null string, website.stratumHost in 'config.json' is used.",
+
+    "address": "",
+    "_comment_address": "a transparent address to send coinbase rewards to and to transfer to zAddress.",
+
+    "zAddress": "",
+    "_comment_zAddress": "a private address used to send coins to tAddress.",
+
+    "tAddress": "",
+    "_comment_tAddress": "transparent address used to send payments, make this a different address, otherwise payments will not send",
+
+    "walletInterval": 2.5,
+
+    "rewardRecipients": {
+        "": 1.0
+    },
+
+    "urlInsight": "",
+    "_comment_urlInsight": "for using non-default insight: e.g. https://koto-insight-testnet.poolof.work for testnet",
+
+    "paymentProcessing": {
+        "maxUnshieldAmount": 100.0,
+        "minConf": 10,
+        "enabled": true,
+        "paymentMode": "prop",
+        "_comment_paymentMode": "prop, pplnt",
+        "paymentInterval": 120,
+        "minimumPayment": 0.1,
+        "maxBlocksPerPayment": 3,
+        "daemon": {
+            "host": "127.0.0.1",
+            "port": 8432,
+            "user": "username",
+            "password": "password",
+            "maxSockets": 16,
+            "_comment_maxSockets1": "you should setup ~/.koto/koto.conf as: ",
+            "_comment_maxSockets2": "rpcworkqueue=(pool thread number) * daemons.maxSockets + paymentProcessing.daemon.maxSocket(this value)",
+            "_comment_maxSockets3": "e.g. rpcworkqueue=96"
+        }
+    },
+
+    "tlsOptions": {
+        "enabled": false,
+        "serverKey": "",
+        "serverCert": "",
+        "ca": ""
+    },
+
+    "ports": {
+        "3032": {
+            "diff": 0.5,
+            "tls": false,
+            "varDiff": {
+                "minDiff": 0.00,
+                "maxDiff": 16,
+                "targetTime": 15,
+                "retargetTime": 60,
+                "variancePercent": 30
+            }
+        }
+    },
+
+    "poolId": "main",
+    "_comment_poolId": "use it for region identification: eu, us, asia or keep default if you have one stratum instance for one coin",
+
+    "daemons": [
+        {
+            "host": "127.0.0.1",
+            "port": 8432,
+            "user": "username",
+            "password": "password",
+            "maxSockets": 16,
+            "_comment_maxSockets1": "you should setup ~/.koto/koto.conf as: ",
+            "_comment_maxSockets2": "rpcworkqueue=(pool thread number) * daemons.maxSockets(this value) + paymentProcessing.daemon.maxSocket",
+            "_comment_maxSockets3": "e.g. rpcworkqueue=96"
+        }
+    ],
+
+    "p2p": {
+        "enabled": true,
+        "host": "127.0.0.1",
+        "port": 8433,
+        "disableTransactions": true
+    },
+
+    "mposMode": {
+        "enabled": false,
+        "host": "127.0.0.1",
+        "port": 3306,
+        "user": "me",
+        "password": "mypass",
+        "database": "zec",
+        "checkPassword": true,
+        "autoCreateWorker": false
+    }
+}

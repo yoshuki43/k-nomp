@@ -1,5 +1,5 @@
 {
-    "enabled": false,
+    "enabled": true,
     "coin": "susucoin.json",
 
     "address": "",
@@ -11,10 +11,10 @@
     },
 
     "paymentProcessing": {
-	"minConf": 10,
+        "minConf": 10,
         "enabled": true,
         "paymentMode": "prop",
-        "_comment_paymentMode":"prop, pplnt",
+        "_comment_paymentMode": "prop, pplnt",
         "paymentInterval": 120,
         "minimumPayment": 0.1,
         "maxBlocksPerPayment": 3,
@@ -28,9 +28,9 @@
 
     "tlsOptions": {
         "enabled": false,
-        "serverKey":"",
-        "serverCert":"",
-        "ca":""
+        "serverKey": "",
+        "serverCert": "",
+        "ca": ""
     },
 
     "ports": {
@@ -47,6 +47,9 @@
         }
     },
 
+    "poolId": "main",
+    "_comment_poolId": "use it for region identification: eu, us, asia or keep default if you have one stratum instance for one coin",
+
     "daemons": [
         {
             "host": "127.0.0.1",
@@ -57,7 +60,7 @@
     ],
 
     "p2p": {
-        "enabled": false,
+        "enabled": true,
         "host": "127.0.0.1",
         "port": 8877,
         "disableTransactions": true

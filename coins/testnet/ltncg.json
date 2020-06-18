@@ -1,0 +1,7 @@
+{
+    "name": "LightningCash-Gold_testnet",
+    "symbol": "TLTNCG",
+    "algorithm": "YesPoWerLTNCG",
+    "peerMagic": "d9f6ccea",
+    "blockTime": 5
+}

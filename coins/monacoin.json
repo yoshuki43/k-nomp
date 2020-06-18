@@ -4,5 +4,9 @@
     "algorithm": "lyra2re2",
     "peerMagic": "fbc0b6db",
     "peerMagicTestnet": "fbd2c8f1",
-    "blockTime": 90
+    "blockTime": 90,
+    "explorer": {
+        "txURL": "https://insight.electrum-mona.org/insight//tx/",
+        "blockURL": "https://insight.electrum-mona.org/insight/block/"
+    }
 }
