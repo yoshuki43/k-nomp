@@ -1,7 +1,12 @@
 {
     "name": "Yenten",
     "symbol": "YTN",
-    "algorithm": "yescryptR16",
+    "algorithm": "yespower",
+    "peerMagic": "ad5aeb9f",
+    "txfee": 0.001,
     "blockTime": 120,
-    "txfee": 0.001
+    "explorer": {
+        "txURL": "http://ytn.ccore.online/transaction/",
+        "blockURL": "http://ytn.ccore.online/block/"
+    }
 }

@@ -3,6 +3,9 @@
     "symbol": "SUSU",
     "algorithm": "sha256d",
     "peerMagic": "f9beb9e9",
-    "peerMagicTestnet": "0c120807",
-    "blockTime": 120
+    "blockTime": 120,
+    "explorer": {
+        "txURL": "https://explore.susukino.com/tx/",
+        "blockURL": "https://explore.susukino.com/block/"
+    }
 }

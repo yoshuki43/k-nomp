@@ -1,0 +1,25 @@
+{
+    "name": "Koto",
+    "symbol": "KOTO",
+    "algorithm": "yescryptR8G",
+    "requireShielding": true,
+    "nSubsidySlowStartInterval": 43200,
+    "nSubsidyHalvingInterval": 1051200,
+    "payFoundersReward": false,
+    "percentFoundersReward": 20,
+    "maxFoundersRewardBlockHeight": 849999,
+    "foundersRewardAddressChangeInterval": 17709.3125,
+    "vFoundersRewardAddress": [],
+    "kotoFoundersReward": [
+        {
+            "comment": "for mainnet",
+            "address": "k3EEgqMM8jpaGW6XXUHpv3kDprMfm1x1VEf",
+            "start": 335600,
+            "last": 2123999
+        }
+    ],
+    "sapling": true,
+    "txfee": 0.0004,
+    "blockTime": 60,
+    "peerMagic": "4b6f746f"
+}

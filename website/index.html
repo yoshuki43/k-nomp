@@ -1,12 +1,14 @@
-<!doctype html>
+﻿<!doctype html>
 
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta name="keywords" content="node, pool, mining, cryptocurrency">
+    <meta name="description" content="node open mining portal">
 
-    <link rel="icon" type="image/png" href="/static/favicon.ico"/>
+    <link rel="shortcut icon" href="/static/favicon.ico" />
 
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css">
@@ -15,8 +17,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-    <script src="/static/nvd3.js"></script>
-    <link rel="stylesheet" href="/static/nvd3.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.min.js"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.6/nv.d3.min.css">
 
     <script src="/static/main.js"></script>
     <link rel="stylesheet" href="/static/style.css">
@@ -27,71 +29,71 @@
 
 <body>
 
-<header>
-    <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal">
+    <header>
+        <div class="home-menu pure-menu pure-menu-open pure-menu-horizontal">
 
-        <a class="pure-menu-heading hot-swapper" href="/"><i class="fa fa-home"></i>&nbsp;zny-nomp</a>
+            <a class="pure-menu-heading hot-swapper" href="/"><i class="fa fa-home"></i>&nbsp;zny-nomp</a>
 
-        <ul>
-            <li class="{{? it.selected === 'getting_started' }}pure-menu-selected{{?}}">
-                <a class="hot-swapper" href="/getting_started">
-                    <i class="fa fa-rocket"></i>&nbsp;
-                    Getting Started
-                </a>
-            </li>
-            <li class="{{? it.selected === 'stats' }}pure-menu-selected{{?}}">
-                <a class="hot-swapper" href="/stats">
-                    <i class="fa fa-bar-chart-o"></i>&nbsp;
-                    Graph Stats
-                </a>
-            </li>
-            <li class="{{? it.selected === 'tbs' }}pure-menu-selected{{?}}">
-                <a class="hot-swapper" href="/tbs">
-                    <i class="fa fa-table"></i>&nbsp;
-                    Tab Stats
-                </a>
-            </li>
-            <li class="{{? it.selected === 'workers' }}pure-menu-selected{{?}}">
-                <a class="hot-swapper" href="/workers">
-                    <i class="fa fa-cogs"></i>&nbsp;
-                    Workers Stats
-                </a>
-            </li>
-            <li class="{{? it.selected === 'api' }}pure-menu-selected{{?}}">
-                <a class="hot-swapper" href="/api">
-                    <i class="fa fa-code"></i>&nbsp;
-                    API
-                </a>
-            </li>
-        </ul>
-    </div>
-</header>
+            <ul>
+                <li class="{{? it.selected === 'getting_started' }}pure-menu-selected{{?}}">
+                    <a class="hot-swapper" href="/getting_started">
+                        <i class="fa fa-rocket"></i>&nbsp;
+                        Getting Started
+                    </a>
+                </li>
+                <li class="{{? it.selected === 'stats' }}pure-menu-selected{{?}}">
+                    <a class="hot-swapper" href="/stats">
+                        <i class="fa fa-bar-chart-o"></i>&nbsp;
+                        Graph Stats
+                    </a>
+                </li>
+                <li class="{{? it.selected === 'tbs' }}pure-menu-selected{{?}}">
+                    <a class="hot-swapper" href="/tbs">
+                        <i class="fa fa-table"></i>&nbsp;
+                        Tab Stats
+                    </a>
+                </li>
+                <li class="{{? it.selected === 'workers' }}pure-menu-selected{{?}}">
+                    <a class="hot-swapper" href="/workers">
+                        <i class="fa fa-cogs"></i>&nbsp;
+                        Workers Stats
+                    </a>
+                </li>
+                <li class="{{? it.selected === 'api' }}pure-menu-selected{{?}}">
+                    <a class="hot-swapper" href="/api">
+                        <i class="fa fa-code"></i>&nbsp;
+                        API
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
 
-<main>
-    {{=it.page}}
-</main>
+    <main>
+        {{=it.page}}
+    </main>
 
 
-<footer>
+    <footer>
 
-    <div>
-        This site is powered by the open source <a target="_blank" href="https://github.com/ROZ-MOFUMOFU-ME/zny-nomp/">zny-nomp</a>
-        project forked by ROZ-MOFUMOFU-ME, created by Joshua Yabut and the Zclassic Community and yoshuki43 originally and is licensed under the <a href="https://en.wikipedia.org/wiki/MIT_License">MIT License</a>
-    </div>
-    <div>
-        <i class="fa fa-heart"></i>&nbsp; Support this project by donating&nbsp;ZNY: ZmnBu9jPKvVFL22PcwMHSEuVpTxFeCdvNv
-    </div>
-    <div id="communityFooter">
-        Community&nbsp;<i class="fa fa-comment"></i>&nbsp;: &nbsp;<a target="_blank" href="https://bitzeny.info/">Forum</a>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <a target="_blank" href="https://bitzeny.wiki.fc2.com/">Wiki</a>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <a target="_blank" href="http://askmona.org/">Ask Mona</a>
-        &nbsp;&nbsp;|&nbsp;&nbsp;
-        <iframe src="https://ghbtns.com/github-btn.html?user=ROZ-MOFUMOFU-ME&repo=zny-nomp&type=star&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="140" height="20"></iframe>
-    </div>
+        <div>
+            This site is powered by the open source <a target="_blank" href="https://github.com/ROZ-MOFUMOFU-ME/zny-nomp/">zny-nomp</a>
+            created by Joshua Yabut and the Zclassic Community and yoshuki43 originally and is licensed under the <a href="https://en.wikipedia.org/wiki/MIT_License">MIT License</a>
+        </div>
+        <div>
+            <i class="fa fa-heart"></i>&nbsp; Support this project by donating&nbsp;ZNY: ZmnBu9jPKvVFL22PcwMHSEuVpTxFeCdvNv
+        </div>
+        <div id="communityFooter">
+            Community&nbsp;<i class="fa fa-comment"></i>&nbsp;: &nbsp;<a target="_blank" href="https://bitzeny.info/">Forum</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a target="_blank" href="https://bitzeny.wiki.fc2.com/">Wiki</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <a target="_blank" href="https://askmona.org/">Ask Mona</a>
+            &nbsp;&nbsp;|&nbsp;&nbsp;
+            <iframe src="https://ghbtns.com/github-btn.html?user=ROZ-MOFUMOFU-ME&repo=zny-nomp&type=star&count=true" frameborder="0" scrolling="0" width="150" height="20"></iframe>
+        </div>
 
-</footer>
+    </footer>
 
 </body>
 </html>

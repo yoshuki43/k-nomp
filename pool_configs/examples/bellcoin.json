@@ -1,6 +1,6 @@
 {
-    "enabled": false,
-    "coin": "bitzeny.json",
+    "enabled": true,
+    "coin": "bellcoin.json",
 
     "address": "",
 
@@ -9,16 +9,16 @@
     },
 
     "paymentProcessing": {
-	"minConf": 10,
+        "minConf": 10,
         "enabled": true,
         "paymentMode": "prop",
-        "_comment_paymentMode":"prop, pplnt",
+        "_comment_paymentMode": "prop, pplnt",
         "paymentInterval": 120,
         "minimumPayment": 0.1,
         "maxBlocksPerPayment": 3,
         "daemon": {
             "host": "127.0.0.1",
-            "port": 9252,
+            "port": 25252,
             "user": "username",
             "password": "password"
         }
@@ -26,9 +26,9 @@
 
     "tlsOptions": {
         "enabled": false,
-        "serverKey":"",
-        "serverCert":"",
-        "ca":""
+        "serverKey": "",
+        "serverCert": "",
+        "ca": ""
     },
 
     "ports": {
@@ -45,19 +45,22 @@
         }
     },
 
+    "poolId": "main",
+    "_comment_poolId": "use it for region identification: eu, us, asia or keep default if you have one stratum instance for one coin",
+
     "daemons": [
         {
             "host": "127.0.0.1",
-            "port": 9252,
+            "port": 25252,
             "user": "username",
             "password": "password"
         }
     ],
 
     "p2p": {
-        "enabled": false,
+        "enabled": true,
         "host": "127.0.0.1",
-        "port": 9253,
+        "port": 25253,
         "disableTransactions": true
     },
 

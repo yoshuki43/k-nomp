@@ -1,15 +1,18 @@
 # BitZeny - Node Open Mining Portal
 
-This is a Yescrypt-0.5, YesPoWer, Lyra2REv2, sha256d and more algo mining pool based off of Node Open Mining Portal.
+This is a Yescrypt, YesPoWer, Lyra2REv2, sha256d and more algo mining pool based off of Node Open Mining Portal.
 
 Donations for development are greatly appreciated!
   * ZNY: ZmnBu9jPKvVFL22PcwMHSEuVpTxFeCdvNv
   * NUKO: 0xa79bde46faab3c40632604728e9f2165b052581c
-  * KOTO :k16dV6stRkFtZpFtMTrznqvavRuMfh4PB1R
+  * KOTO :k1FTuimwDJ8oo3x23cEBLxovxw5Cqq2U1HK
   * SUSU: SeXbMBaax7NgnTEFEMxin5ycXy9r9CDBot
   * MONA: mona1qnur6ljkl5pe8w6ql8xfqw4aa38d5xa9q68dxll
   * BELL: BCVicYRSqKKt1ynJKPrXHA46hUWLrbjR49
-  * BTC: 3KedzPANAtCzADPbhT7GMv3LjxyeRXc4AE
+  * SUGAR: sugar1qtwqle9lrr753kxuzqqsh3hv28jl07e3mntx78n
+  * VIPS: VFixsia2EstV4uEEigUXUrknDGsFeWyNhE
+  * KUMA: KHjjZ5misqq45zwhj86WKqV8bzqcYExzyM
+  * BTC: 3C8oCWjVs2sycQcK3ttiPRSKV4AKBhC7xT
   
 #### Production Usage Notice
 This is beta software. All of the following are things that can change and break an existing ZNY-NOMP setup: functionality of any feature, structure of configuration files and structure of redis data. If you use this software in production then *DO NOT* pull new code straight into production usage because it can and often will break your setup and require you to tweak things like config files or redis data. *Only tagged releases are considered stable.*
@@ -30,7 +33,7 @@ Discord
 
 If your pool uses ZNY-NOMP let us know and we will list your website here.
 
-### Some pools using ZNY-NOMP or node-stratum-yescrypt-0.5-module:
+### Some pools using ZNY-NOMP or node-stratum-pool module:
 
 * [mofumofu.me - BitZeny Mining Pool](https://zny.mofumofu.me/)
 * [人のプール](https://mining.zinntikumugai.xyz/)
@@ -43,7 +46,7 @@ Usage
 
 #### Requirements
 * Coin daemon(s) (find the coin's repo and build latest version from source)
-* [Node.js](http://nodejs.org/) v7+ ([follow these installation instructions](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager))
+* [Node.js](http://nodejs.org/) v8.11+ ([follow these installation instructions](https://github.com/joyent/node/wiki/Installing-Node.js-via-package-manager))
 * [Redis](http://redis.io/) key-value store v2.6+ ([follow these instructions](http://redis.io/topics/quickstart))
 
 ##### Seriously
@@ -79,7 +82,7 @@ a good pool operator. For starters be sure to read:
 Clone the repository and run `npm update` for all the dependencies to be installed:
 
 ```bash
-sudo apt-get install build-essential libsodium-dev npm
+sudo apt-get install build-essential libsodium-dev npm libboost-all-dev
 sudo npm install n -g
 sudo n v9
 git clone https://github.com/ROZ-MOFUMOFU-ME/zny-nomp
@@ -134,7 +137,7 @@ output from ZNY-NOMP.
 
 #### Upgrading ZNY-NOMP
 When updating ZNY-NOMP to the latest code its important to not only `git pull` the latest from this repo, but to also update
-the `node-stratum-pool-yescrypt-0.5` and `node-multi-hashing-yescrypt-0.5` modules, and any config files that may have been changed.
+the `node-stratum-pool` and `node-multi-hashing` modules, and any config files that may have been changed.
 * Inside your ZNY-NOMP directory (where the init.js script is) do `git pull` to get the latest ZNY-NOMP code.
 * Remove the dependenices by deleting the `node_modules` directory with `rm -r node_modules`.
 * Run `npm update` to force updating/reinstalling of the dependencies.
@@ -145,6 +148,12 @@ Credits
 -------
 ### ZNY-NOMP
 * [ROZ-MOFUMOFU-ME](https://github.com/ROZ-MOFUMOFU-ME)
+* [zinntikumugai](https://github.com/zinntikumugai) - great supporter
+
+### s-nomp
+* [egyptianbman](https://github.com/egyptianbman)
+* [nettts](https://github.com/nettts)
+* [potato](https://github.com/zzzpotato)
 
 ### K-NOMP
 * [yoshuki43](https://github.com/yoshuki43)
@@ -167,7 +176,6 @@ Credits
 * [icecube45](//github.com/icecube45) - helping out with the repo wiki
 * [Fcases](//github.com/Fcases) - ordered me a pizza <3
 * Those that contributed to [node-stratum-pool](//github.com/zone117x/node-stratum-pool#credits)
-
 
 License
 -------

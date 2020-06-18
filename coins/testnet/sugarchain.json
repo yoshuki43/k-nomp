@@ -1,0 +1,15 @@
+{
+    "name": "Sugarchain_testnet",
+    "symbol": "TUGAR",
+    "algorithm": "YesPoWerSUGAR",
+    "peerMagic": "0c120807",
+    "testnet": {
+        "bech32": "tugar",
+        "bip32": {
+            "public": "043587cf"
+        },
+        "pubKeyHash": "42",
+        "scriptHash": "80"
+    },
+    "blockTime": 5
+}
