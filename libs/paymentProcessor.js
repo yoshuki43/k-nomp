@@ -396,9 +396,9 @@ function SetupForPool(logger, poolOptions, setupFinished){
                         if (result[0].response.version !== null) {
                             finalRedisCommands.push(['hset', coin + ':stats', 'networkVersion', result[0].response.version]);
                         }
-                        /*if (result[0].response.subversion !== null) {
+                        if (result[0].response.subversion !== null) {
                             finalRedisCommands.push(['hset', coin + ':stats', 'networkSubVersion', result[0].response.subversion]);
-                        }*/
+                        }
                         if (result[0].response.protocolversion !== null) {
                             finalRedisCommands.push(['hset', coin + ':stats', 'networkProtocolVersion', result[0].response.protocolversion]);
                         }
