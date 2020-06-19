@@ -2,7 +2,8 @@
     "name": "Monacoin_testnet",
     "symbol": "TMONA",
     "algorithm": "lyra2re2",
-    "peerMagic": "fbd2c8f1",
+    "peerMagic": "fbc0b6db",
+    "peerMagicTestnet": "fbd2c8f",
     "testnet": {
         "bech32": "tmona",
         "bip32": {

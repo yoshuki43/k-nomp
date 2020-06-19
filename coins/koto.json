@@ -22,6 +22,7 @@
     "txfee": 0.0004,
     "blockTime": 60,
     "peerMagic": "4b6f746f",
+    "peerMagicTestnet": "546f6b6f",
     "explorer": {
         "txURL": "https://insight.kotocoin.info/tx/",
         "blockURL": "https://insight.kotocoin.info/block/"

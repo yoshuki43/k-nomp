@@ -2,7 +2,8 @@
     "name": "Yenten_testnet",
     "symbol": "TYTN",
     "algorithm": "yespower",
-    "peerMagic": "9554e495",
+    "peerMagic": "ad5aeb9f",
+    "peerMagicTestnet": "9554e495",
     "txfee": 0.001,
     "blockTime": 120
 }

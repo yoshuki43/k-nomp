@@ -3,6 +3,7 @@
     "symbol": "SUGAR",
     "algorithm": "yespowerSUGAR",
     "peerMagic": "9feb4b9d",
+    "peerMagicTestnet": "0c120807",
     "mainnet": {
         "bech32": "sugar",
         "bip32": {

@@ -1,8 +1,9 @@
 {
     "name": "Sugarchain_testnet",
     "symbol": "TUGAR",
-    "algorithm": "YesPoWerSUGAR",
-    "peerMagic": "0c120807",
+    "algorithm": "yespowerSUGAR",
+    "peerMagic": "9feb4b9d",
+    "peerMagicTestnet": "0c120807",
     "testnet": {
         "bech32": "tugar",
         "bip32": {

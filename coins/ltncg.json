@@ -3,6 +3,7 @@
     "symbol": "LTNCG",
     "algorithm": "yespowerLTNCG",
     "peerMagic": "d9f6ccea",
+    "peerMagicTestnet": "d9f6ccea",
     "blockTime": 5,
     "explorer": {
         "txURL": "https://explorer.lightningcash.gold/tx/",

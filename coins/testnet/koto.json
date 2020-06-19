@@ -20,5 +20,10 @@
     ],
     "txfee": 0.0004,
     "blockTime": 60,
-    "peerMagic": "546f6b6f"
+    "peerMagic": "4b6f746f",
+    "peerMagicTestnet": "546f6b6f",
+    "explorer": {
+        "txURL": "https://test-koto.blockbook.ovh//tx/",
+        "blockURL": "https://test-koto.blockbook.ovh//block/"
+    }
 }
