@@ -1,4 +1,5 @@
 # BitZeny - Node Open Mining Portal
+![Circle CI](https://circleci.com/gh/ROZ-MOFUMOFU-ME/zny-nomp/tree/main.svg?style=shield)
 
 This is a Yescrypt, YesPoWer, Lyra2REv2, sha256d and more algo mining pool based off of Node Open Mining Portal.
 
