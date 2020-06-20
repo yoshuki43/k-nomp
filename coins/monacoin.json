@@ -14,7 +14,7 @@
     },
     "blockTime": 90,
     "explorer": {
-        "txURL": "https://insight.electrum-mona.org/insight//tx/",
+        "txURL": "https://insight.electrum-mona.org/insight/tx/",
         "blockURL": "https://insight.electrum-mona.org/insight/block/"
     }
 }

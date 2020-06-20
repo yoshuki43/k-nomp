@@ -12,5 +12,9 @@
         "pubKeyHash": "111",
         "scriptHash": "117"
     },
-    "blockTime": 90
+    "blockTime": 90,
+    "explorer": {
+        "txURL": "https://testnet-blockbook.electrum-mona.org/tx/",
+        "blockURL": "https://testnet-blockbook.electrum-mona.org/block/"
+    }
 }
