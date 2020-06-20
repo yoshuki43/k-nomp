@@ -1,5 +1,5 @@
 # BitZeny - Node Open Mining Portal
-![Circle CI](https://circleci.com/gh/ROZ-MOFUMOFU-ME/zny-nomp/tree/main.svg?style=shield)
+[![Join the chat at https://github.com/ROZ-MOFUMOFU-ME/zny-nomp/](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ROZ-MOFUMOFU-ME/zny-nomp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/ROZ-MOFUMOFU-ME/zny-nomp.svg?branch=main)](https://travis-ci.org/ROZ-MOFUMOFU-ME/zny-nomp) (https://goreportcard.com/report/github.com/ROZ-MOFUMOFU-ME/zny-nomp) [![Build Status](https://travis-ci.org/ROZ-MOFUMOFU-ME/zny-nomp.svg?branch=master)](https://travis-ci.org/ROZ-MOFUMOFU-ME/open-nekonium-pool)
 
 This is a Yescrypt, YesPoWer, Lyra2REv2, sha256d and more algo mining pool based off of Node Open Mining Portal.
 
