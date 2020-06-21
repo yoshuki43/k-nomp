@@ -3,7 +3,7 @@
     "symbol": "TUGAR",
     "algorithm": "yespowerSUGAR",
     "peerMagic": "9feb4b9d",
-    "peerMagicTestnet": "0c120807",
+    "peerMagicTestnet": "b0119070",
     "testnet": {
         "bech32": "tugar",
         "bip32": {
