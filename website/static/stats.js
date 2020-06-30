@@ -87,7 +87,7 @@ function getReadableHashRateString(hashrate){
                 return '0 Hash/s';
                 //return (Math.round(hashrate / 1000) / 1000 ).toFixed(2)+' Sol/s';
         }
-    var byteUnits = [ ' H/s', ' KH/s', ' MH/s', ' GH/s', ' TH/s', ' PH/s' ];
+    var byteUnits = [ ' Hash/s', ' KHash/s', ' MHash/s', ' GHash/s', ' THash/s', ' PHash/s' ];
     var i = Math.floor((Math.log(hashrate/1000) / Math.log(1000)) - 1);
     hashrate = (hashrate/1000) / Math.pow(1000, i + 1);
     return hashrate.toFixed(2) + byteUnits[i];
