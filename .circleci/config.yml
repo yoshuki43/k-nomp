@@ -1,16 +1,45 @@
-jobs:
-  test:
-    executor: node/default
-    steps:
-      - checkout
-      - node/install-packages:
-          cache-path: ~/project/node_modules
-          override-ci-command: npm install
-      - run: npm run test
-orbs:
-  node: 'circleci/node:12'
+node-base: &node-base
+  steps:
+    - checkout
+    - restore_cache:
+        keys:
+          - v1-npm-deps-{{ checksum "package-lock.json" }}
+          - v1-npm-deps-
+    - run: npm install
+    - run: npm test
+    - save_cache:
+        key: v1-npm-deps-{{ checksum "package-lock.json" }}
+        paths:
+          - node_modules
+
 version: 2.1
+jobs:
+  test-v7:
+    docker:
+      - image: circleci/node:7
+    <<: *node-base
+  test-v9:
+    docker:
+      - image: circleci/node:9
+    <<: *node-base
+  test-v10:
+    docker:
+      - image: circleci/node:10
+    <<: *node-base
+  test-v12:
+    docker:
+      - image: circleci/node:12
+    <<: *node-base
+  test-v14:
+    docker:
+      - image: circleci/node:14
+    <<: *node-base
 workflows:
-  test_my_app:
+  version: 2
+  build:
     jobs:
-      - test
+      - test-v7
+      - test-v9
+      - test-v10
+      - test-v12
+      - test-v14
