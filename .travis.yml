@@ -1,7 +1,10 @@
 language: node_js
 node_js:
-  - 9
-  - 12
+- '7'
+- '9'
+- '10'
+- '12'
+- '14'
   
 ignore_changes:
   - *.md
