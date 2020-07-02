@@ -85,7 +85,7 @@ a good pool operator. For starters be sure to read:
 Clone the repository and run `npm update` for all the dependencies to be installed:
 
 ```bash
-sudo apt-get install build-essential libsodium-dev npm libboost-all-dev
+sudo apt-get install build-essential libsodium-dev npm libboost-all-dev libgmp-dev
 sudo npm install n -g
 sudo n v9
 git clone https://github.com/ROZ-MOFUMOFU-ME/zny-nomp
