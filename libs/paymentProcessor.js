@@ -383,7 +383,7 @@ function SetupForPool(logger, poolOptions, setupFinished){
                     finalRedisCommands.push(['hset', coin + ':stats', 'networkSols', result[0].response.networkhashps]);
                 }
 
-                daemon.cmd(options.coin.hasGetInfo ? 'getinfo' : 'getblockchaininfo', params,
+                daemon.cmd(poolOptions.coin.hasGetInfo ? 'getinfo' : 'getnetworkinfo', params,
                     function (result) {
                         if (!result || result.error || result[0].error || !result[0].response) {
                             logger.error(logSystem, logComponent, 'Error with RPC call getnetworkinfo '+JSON.stringify(result[0].error));
@@ -396,14 +396,23 @@ function SetupForPool(logger, poolOptions, setupFinished){
                         if (result[0].response.version !== null) {
                             finalRedisCommands.push(['hset', coin + ':stats', 'networkVersion', result[0].response.version]);
                         }
-                        if (result[0].response.subversion !== null) {
-                            finalRedisCommands.push(['hset', coin + ':stats', 'networkSubVersion', result[0].response.subversion]);
-                        }
                         if (result[0].response.protocolversion !== null) {
                             finalRedisCommands.push(['hset', coin + ':stats', 'networkProtocolVersion', result[0].response.protocolversion]);
                         }
 
-                        if (finalRedisCommands.length <= 0)
+                        if (poolOptions.coin.hasGetInf === null ) daemon.cmd ('getnetworkinfo', params,
+                            function (result) {
+                                if (!result || result.error || result[0].error || !result[0].response) {
+                                    logger.error(logSystem, logComponent, 'Error with RPC call getnetworkinfo ' + JSON.stringify(result[0].error));
+                                    return;
+                                }
+
+                                if (result[0].response.subversion !== null) {
+                                    finalRedisCommands.push(['hset', coin + ':stats', 'networkSubVersion', result[0].response.subversion]);
+                                }
+                            }
+                        )
+                            if (finalRedisCommands.length <= 0)
                             return;
 
                         redisClient.multi(finalRedisCommands).exec(function(error, results){
