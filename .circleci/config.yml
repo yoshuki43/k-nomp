@@ -14,9 +14,9 @@ node-base: &node-base
 
 version: 2.1
 jobs:
-  test-v7:
+  test-v8:
     docker:
-      - image: circleci/node:7
+      - image: circleci/node:8
     <<: *node-base
   test-v9:
     docker:
@@ -26,20 +26,20 @@ jobs:
     docker:
       - image: circleci/node:10
     <<: *node-base
-  test-v12:
+  test-v11:
     docker:
       - image: circleci/node:12
     <<: *node-base
-  test-v14:
+  test-v12:
     docker:
-      - image: circleci/node:14
+      - image: circleci/node:12
     <<: *node-base
 workflows:
   version: 2
   build:
     jobs:
-      - test-v7
+      - test-v8
       - test-v9
       - test-v10
+      - test-v11
       - test-v12
-      - test-v14
