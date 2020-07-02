@@ -383,7 +383,7 @@ function SetupForPool(logger, poolOptions, setupFinished){
                     finalRedisCommands.push(['hset', coin + ':stats', 'networkSols', result[0].response.networkhashps]);
                 }
 
-                daemon.cmd('getnetworkinfo', params,
+                daemon.cmd(options.coin.hasGetInfo ? 'getinfo' : 'getblockchaininfo', params,
                     function (result) {
                         if (!result || result.error || result[0].error || !result[0].response) {
                             logger.error(logSystem, logComponent, 'Error with RPC call getnetworkinfo '+JSON.stringify(result[0].error));
