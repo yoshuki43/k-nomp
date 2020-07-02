@@ -28,7 +28,7 @@ jobs:
     <<: *node-base
   test-v11:
     docker:
-      - image: circleci/node:12
+      - image: circleci/node:11
     <<: *node-base
   test-v12:
     docker:
