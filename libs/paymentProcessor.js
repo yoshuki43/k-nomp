@@ -400,7 +400,7 @@ function SetupForPool(logger, poolOptions, setupFinished){
                             finalRedisCommands.push(['hset', coin + ':stats', 'networkProtocolVersion', result[0].response.protocolversion]);
                         }
 
-                        if (poolOptions.coin.hasGetInf === null ) daemon.cmd ('getnetworkinfo', params,
+                        if (poolOptions.coin.hasGetInfo === null ) daemon.cmd ('getnetworkinfo', params,
                             function (result) {
                                 if (!result || result.error || result[0].error || !result[0].response) {
                                     logger.error(logSystem, logComponent, 'Error with RPC call getnetworkinfo ' + JSON.stringify(result[0].error));
