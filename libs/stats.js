@@ -426,7 +426,7 @@ module.exports = function(logger, portalConfig, poolConfigs){
 								networkSolsString: getReadableNetworkHashRateString(replies[i + 2] ? (replies[i + 2].networkSols || 0) : 0),
 								networkDiff: replies[i + 2] ? (replies[i + 2].networkDiff || 0) : 0,
 								networkConnections: replies[i + 2] ? (replies[i + 2].networkConnections || 0) : 0,
-                                networkVersion: replies[i + 2] ? (replies[i + 2].networkSubVersion || 0) : 0,
+                                networkVersion: replies[i + 2] ? (replies[i + 2].networkSubVersion || replies[i + 2].networkVersion) : 0,
                                 networkProtocolVersion: replies[i + 2] ? (replies[i + 2].networkProtocolVersion || 0) : 0
                             },
                             marketStats: marketStats,

@@ -147,6 +147,7 @@
                             }}
                             {{=_luckTime}}
                         </span>
+
                     </div>
                     <div>
                         <i class="fa fa-bar-chart"></i>&nbsp;Share:&nbsp;<span id="statsHashPercent{{=pool}}">
@@ -174,6 +175,7 @@
                     <div><i class="fa fa-tachometer"></i><small>Network Hash/s:</small> <span id="statsNetworkSols{{=pool}}">{{=it.stats.pools[pool].poolStats.networkSolsString}}</span></div>
                     <div><i class="fa fa-unlock-alt" aria-hidden="true"></i><small>Difficulty:</small> <span id="statsNetworkDiff{{=pool}}">{{=it.stats.pools[pool].poolStats.networkDiff}}</span></div>
                     <div><i class="fa fa-users"></i><small>Node Connections:</small> <span id="statsNetworkConnections{{=pool}}">{{=it.stats.pools[pool].poolStats.networkConnections}}</span></div>
+                    <div><i class="fa fa-code-fork"></i><small>Daemon:</small> <span id="statsNetworkVersion{{=pool}}">{{=it.stats.pools[pool].poolStats.networkVersion}}</span></div>
                 </div>
             </div>
         </div>
@@ -244,12 +246,11 @@
                 {{ } }}
                 <!--{{=JSON.stringify(blockscomb)}}-->
                 <script>
-      var blockscomb = ({{=JSON.stringify(blockscomb)}})
+      var blockscomb = JSON.stringify(blockscomb)
                 </script>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 <center>
@@ -343,7 +344,7 @@ var legend = vis.selectAll('.legend')
     .enter()
     .append('g')
     .attr('class', 'legend')
-    .attr('id', {{=JSON.stringify(pool)}})
+    .attr('id', JSON.stringify(pool))
     .attr('transform', function(d, i) {
           var height = legendRectSize + legendSpacing;
           var offset = height * color.domain().length / 2;
