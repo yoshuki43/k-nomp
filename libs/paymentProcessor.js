@@ -376,13 +376,24 @@ function SetupForPool(logger, poolOptions, setupFinished){
                 if (result[0].response.blocks !== null) {
                     finalRedisCommands.push(['hset', coin + ':stats', 'networkBlocks', result[0].response.blocks]);
                 }
-                if (result[0].response.difficulty !== null) {
-                    finalRedisCommands.push(['hset', coin + ':stats', 'networkDiff', result[0].response.difficulty]);
+                if (result[0].response.difficulty !== null && !poolOptions.coin.POS === true) {
+                    finalRedisCommands.push(['hset', coin + ':stats', 'networkDiff', result[0].response.difficulty]);  
                 }
                 if (result[0].response.networkhashps !== null) {
                     finalRedisCommands.push(['hset', coin + ':stats', 'networkSols', result[0].response.networkhashps]);
                 }
 
+                if (poolOptions.coin.POS === true) daemon.cmd('getblockchaininfo', params,
+                    function (result) {
+                        if (!result || result.error || result[0].error || !result[0].response) {
+                            logger.error(logSystem, logComponent, 'Error with RPC call getblockchaininfo ' + JSON.stringify(result[0].error));
+                            return;
+                        }
+                        if (result[0].response.difficulty !== null) {
+                            finalRedisCommands.push(['hset', coin + ':stats', 'networkDiff', result[0].response.difficulty]);
+                        }
+                    }
+                )
                 daemon.cmd(poolOptions.coin.hasGetInfo ? 'getinfo' : 'getnetworkinfo', params,
                     function (result) {
                         if (!result || result.error || result[0].error || !result[0].response) {
@@ -400,7 +411,7 @@ function SetupForPool(logger, poolOptions, setupFinished){
                             finalRedisCommands.push(['hset', coin + ':stats', 'networkProtocolVersion', result[0].response.protocolversion]);
                         }
 
-                        if (poolOptions.coin.hasGetInfo === null ) daemon.cmd ('getnetworkinfo', params,
+                        if (poolOptions.coin.hasGetInfo === null) daemon.cmd('getnetworkinfo', params,
                             function (result) {
                                 if (!result || result.error || result[0].error || !result[0].response) {
                                     logger.error(logSystem, logComponent, 'Error with RPC call getnetworkinfo ' + JSON.stringify(result[0].error));
@@ -409,7 +420,7 @@ function SetupForPool(logger, poolOptions, setupFinished){
 
                                 if (result[0].response.subversion !== null) {
                                     finalRedisCommands.push(['hset', coin + ':stats', 'networkSubVersion', result[0].response.subversion]);
-                                }
+                                }                                
                             }
                         )
                             if (finalRedisCommands.length <= 0)
