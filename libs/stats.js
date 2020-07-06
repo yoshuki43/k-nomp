@@ -586,7 +586,8 @@ module.exports = function(logger, portalConfig, poolConfigs){
                 var _blocktime = coinStats.blockTime || 90;
 				var _networkHashRate = parseFloat(coinStats.poolStats.networkSols);
 				coinStats.luckDays =  ((_networkHashRate / coinStats.hashrate * _blocktime) / (24 * 60 * 60)).toFixed(3);
-				coinStats.luckHours = ((_networkHashRate / coinStats.hashrate * _blocktime) / (60 * 60)).toFixed(3);
+                coinStats.luckHours = ((_networkHashRate / coinStats.hashrate * _blocktime) / (60 * 60)).toFixed(3);
+                coinStats.luckMinute = ((_networkHashRate / coinStats.hashrate * _blocktime) / (60)).toFixed(3);
 				coinStats.minerCount = Object.keys(coinStats.miners).length;
                 coinStats.workerCount = Object.keys(coinStats.workers).length;
                 portalStats.global.workers += coinStats.workerCount;
@@ -633,14 +634,16 @@ module.exports = function(logger, portalConfig, poolConfigs){
                 for (var worker in coinStats.workers) {
 					var _workerRate = shareMultiplier * coinStats.workers[worker].shares / portalConfig.website.stats.hashrateWindow;
 					coinStats.workers[worker].luckDays = ((_networkHashRate / _workerRate * _blocktime) / (24 * 60 * 60)).toFixed(3);
-					coinStats.workers[worker].luckHours = ((_networkHashRate / _workerRate * _blocktime) / (60 * 60)).toFixed(3);
+                    coinStats.workers[worker].luckHours = ((_networkHashRate / _workerRate * _blocktime) / (60 * 60)).toFixed(3);
+                    coinStats.workers[worker].luckMinute = ((_networkHashRate / _workerRate * _blocktime) / (60)).toFixed(3);
 					coinStats.workers[worker].hashrate = _workerRate;
 					coinStats.workers[worker].hashrateString = _this.getReadableHashRateString(_workerRate);
                 }
 				for (var miner in coinStats.miners) {
 					var _workerRate = shareMultiplier * coinStats.miners[miner].shares / portalConfig.website.stats.hashrateWindow;
 					coinStats.miners[miner].luckDays = ((_networkHashRate / _workerRate * _blocktime) / (24 * 60 * 60)).toFixed(3);
-					coinStats.miners[miner].luckHours = ((_networkHashRate / _workerRate * _blocktime) / (60 * 60)).toFixed(3);
+                    coinStats.miners[miner].luckHours = ((_networkHashRate / _workerRate * _blocktime) / (60 * 60)).toFixed(3);
+                    coinStats.miners[miner].luckMinute = ((_networkHashRate / _workerRate * _blocktime) / (60)).toFixed(3);
 					coinStats.miners[miner].hashrate = _workerRate;
 					coinStats.miners[miner].hashrateString = _this.getReadableHashRateString(_workerRate);
                 }
@@ -754,7 +757,7 @@ module.exports = function(logger, portalConfig, poolConfigs){
 			return '0 Hash/s';
 			//return (Math.round(hashrate / 1000) / 1000 ).toFixed(2)+' Sol/s';
 		}
-        var byteUnits = [ ' Hash/s', ' KHash/s', ' MHash/s', ' GHash/s', ' THash/s', ' PHash/s' ];
+        var byteUnits = [' Hash/s', ' KHash/s', ' MHash/s', ' GHash/s', ' THash/s', ' PHash/s', ' EHash/s', ' ZHash/s', ' YHash/s' ];
         var i = Math.floor((Math.log(hashrate/1000) / Math.log(1000)) - 1);
         hashrate = (hashrate/1000) / Math.pow(1000, i + 1);
         return hashrate.toFixed(2) + byteUnits[i];
@@ -764,7 +767,7 @@ module.exports = function(logger, portalConfig, poolConfigs){
 		hashrate = (hashrate * 1000000);
 		if (hashrate < 1000000)
 			return '0 Hash/s';
-		var byteUnits = [ ' Hash/s', ' KHash/s', ' MHash/s', ' GHash/s', ' THash/s', ' PHash/s' ];
+        var byteUnits = [' Hash/s', ' KHash/s', ' MHash/s', ' GHash/s', ' THash/s', ' PHash/s', ' EHash/s', ' ZHash/s', ' YHash/s' ];
 		var i = Math.floor((Math.log(hashrate/1000) / Math.log(1000)) - 1);
 		hashrate = (hashrate/1000) / Math.pow(1000, i + 1);
 		return hashrate.toFixed(2) + byteUnits[i];

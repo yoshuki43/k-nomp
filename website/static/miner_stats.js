@@ -12,9 +12,9 @@ var totalShares;
 function getReadableHashRateString(hashrate){
 	hashrate = (hashrate * 1000000);
 	if (hashrate < 1000000) {
-		return '0 Sol/s';
+		return '0 hash/s';
 	}
-	var byteUnits = [ ' H/s', ' KH/s', ' MH/s', ' GH/s', ' TH/s', ' PH/s' ];
+	var byteUnits = [' Hash/s', ' KHash/s', ' MHash/s', ' GHash/s', ' THash/s', ' PHash/s', ' EHash/s', ' ZHash/s', ' YHash/s' ];
 	var i = Math.floor((Math.log(hashrate/1000) / Math.log(1000)) - 1);
 	hashrate = (hashrate/1000) / Math.pow(1000, i + 1);
 	return hashrate.toFixed(2) + byteUnits[i];
@@ -22,12 +22,17 @@ function getReadableHashRateString(hashrate){
 
 function getReadableLuckTime(lucktime){
 	var luck = lucktime;
-	var timeUnits = [ ' Days', ' Hours', ' Minutes' ];
+	var timeUnits = [' Days', ' Hours', ' Minutes', ' Seconds'];
 	if (luck < 1) {
 		luck = luck * 24;
 		if (luck < 1) {
 			luck = luck * 60;
-			return luck.toFixed(0) + timeUnits[2];
+			if (luck < 1) {
+				luck = luck * 60;
+				return luck.toFixed(2) + timeUnits[3];
+			} else {
+				return luck.toFixed(2) + timeUnits[2];
+			}
 		} else {
 			return luck.toFixed(2) + timeUnits[1];
 		}
@@ -197,7 +202,7 @@ function addWorkerToDisplay(name, htmlSafeName, workerObj) {
 	htmlToAdd+='<div><i class="fa fa-tachometer"></i> <span id="statsHashrateAvg'+htmlSafeName+'">'+getReadableHashRateString(calculateAverageHashrate(name))+'</span> (Avg)</div>';
 	htmlToAdd+='<div><i class="fa fa-shield"></i> <small>Diff:</small> <span id="statsDiff'+htmlSafeName+'">'+workerObj.diff+'</span></div>';
 	htmlToAdd+='<div><i class="fa fa-cog"></i> <small>Shares:</small> <span id="statsShares'+htmlSafeName+'">'+(Math.round(workerObj.currRoundShares * 100) / 100)+'</span></div>';
-	htmlToAdd+='<div><i class="fa fa-gavel"></i> <small>Luck <span id="statsLuckDays'+htmlSafeName+'">'+workerObj.luckDays+'</span> Days</small></div>';
+	htmlToAdd += '<div><i class="fa fa-gavel"></i> <small>Luck <span id="statsLuckDays' + htmlSafeName + '">' + getReadableLuckTime(workerObj.luckDays) +'</span></small></div>';
 	htmlToAdd+='<div><i class="fa fa-money"></i> <small>Bal: <span id="statsBalance'+htmlSafeName+'">'+workerObj.balance+'</span></small></div>';
 	htmlToAdd+='<div><i class="fa fa-money"></i> <small>Paid: <span id="statsPaid'+htmlSafeName+'">'+workerObj.paid+'</span></small></div>';
 	htmlToAdd+='</div></div></div>';

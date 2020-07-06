@@ -397,7 +397,7 @@ function SetupForPool(logger, poolOptions, setupFinished){
                 daemon.cmd(poolOptions.coin.hasGetInfo ? 'getinfo' : 'getnetworkinfo', params,
                     function (result) {
                         if (!result || result.error || result[0].error || !result[0].response) {
-                            logger.error(logSystem, logComponent, 'Error with RPC call getnetworkinfo '+JSON.stringify(result[0].error));
+                            logger.error(logSystem, logComponent, 'Error with RPC call getinfo or getnetworkinfo ' + JSON.stringify(result[0].error));
                             return;
                         }
 
@@ -405,24 +405,16 @@ function SetupForPool(logger, poolOptions, setupFinished){
                             finalRedisCommands.push(['hset', coin + ':stats', 'networkConnections', result[0].response.connections]);
                         }
                         if (result[0].response.version !== null) {
-                            finalRedisCommands.push(['hset', coin + ':stats', 'networkVersion', result[0].response.version]);
+                            finalRedisCommands.push(['hset', coin + ':stats', 'version', result[0].response.version]);
                         }
                         if (result[0].response.protocolversion !== null) {
                             finalRedisCommands.push(['hset', coin + ':stats', 'networkProtocolVersion', result[0].response.protocolversion]);
                         }
-
-                        if (poolOptions.coin.hasGetInfo === null) daemon.cmd('getnetworkinfo', params,
-                            function (result) {
-                                if (!result || result.error || result[0].error || !result[0].response) {
-                                    logger.error(logSystem, logComponent, 'Error with RPC call getnetworkinfo ' + JSON.stringify(result[0].error));
-                                    return;
-                                }
-
-                                if (result[0].response.subversion !== null) {
-                                    finalRedisCommands.push(['hset', coin + ':stats', 'networkSubVersion', result[0].response.subversion]);
-                                }                                
-                            }
-                        )
+                        if (result[0].response.subversion !== null) {
+                            finalRedisCommands.push(['hset', coin + ':stats', 'networkSubVersion', result[0].response.subversion]);
+                        } else if (result[0].response.subversion === null) {
+                            finalRedisCommands.push(['hset', coin + ':stats', 'networkVersion', result[0].response.version])
+                        }
                             if (finalRedisCommands.length <= 0)
                             return;
 
