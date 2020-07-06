@@ -93,7 +93,7 @@ sudo n v12
 sudo apt purge nodejs npm -y
 sudo ln -sf /usr/local/bin/node /usr/bin/node 
 sudo ln -sf /usr/local/bin/npm /usr/bin/npm 
-git clone https://github.com/ROZ-MOFUMOFU-ME/zny-nomp -b dev
+git clone https://github.com/ROZ-MOFUMOFU-ME/zny-nomp
 cd zny-nomp
 npm install
 ```
