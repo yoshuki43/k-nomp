@@ -376,25 +376,16 @@ function SetupForPool(logger, poolOptions, setupFinished){
                 if (result[0].response.blocks !== null) {
                     finalRedisCommands.push(['hset', coin + ':stats', 'networkBlocks', result[0].response.blocks]);
                 }
-                if (result[0].response.difficulty !== null && !poolOptions.coin.POS === true) {
-                    finalRedisCommands.push(['hset', coin + ':stats', 'networkDiff', result[0].response.difficulty]);  
+                if (result[0].response.difficulty !== null && typeof (result[0].response.difficulty) == 'object') {
+                    finalRedisCommands.push(['hset', coin + ':stats', 'networkDiff', result[0].response.difficulty['proof-of-work']]);
+                } else if (result[0].response.difficulty !== null) {
+                    finalRedisCommands.push(['hset', coin + ':stats', 'networkDiff', result[0].response.difficulty]);
                 }
                 if (result[0].response.networkhashps !== null) {
                     finalRedisCommands.push(['hset', coin + ':stats', 'networkSols', result[0].response.networkhashps]);
                 }
 
-                if (poolOptions.coin.POS === true) daemon.cmd('getblockchaininfo', params,
-                    function (result) {
-                        if (!result || result.error || result[0].error || !result[0].response) {
-                            logger.error(logSystem, logComponent, 'Error with RPC call getblockchaininfo ' + JSON.stringify(result[0].error));
-                            return;
-                        }
-                        if (result[0].response.difficulty !== null) {
-                            finalRedisCommands.push(['hset', coin + ':stats', 'networkDiff', result[0].response.difficulty]);
-                        }
-                    }
-                )
-                daemon.cmd(poolOptions.coin.hasGetInfo ? 'getinfo' : 'getnetworkinfo', params,
+                daemon.cmd(poolOptions.coin.getInfo ? 'getinfo' : 'getnetworkinfo', params,
                     function (result) {
                         if (!result || result.error || result[0].error || !result[0].response) {
                             logger.error(logSystem, logComponent, 'Error with RPC call getinfo or getnetworkinfo ' + JSON.stringify(result[0].error));
