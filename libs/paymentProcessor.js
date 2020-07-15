@@ -396,15 +396,13 @@ function SetupForPool(logger, poolOptions, setupFinished){
                             finalRedisCommands.push(['hset', coin + ':stats', 'networkConnections', result[0].response.connections]);
                         }
                         if (result[0].response.version !== null) {
-                            finalRedisCommands.push(['hset', coin + ':stats', 'version', result[0].response.version]);
+                            finalRedisCommands.push(['hset', coin + ':stats', 'networkVersion', result[0].response.version]);
                         }
                         if (result[0].response.protocolversion !== null) {
                             finalRedisCommands.push(['hset', coin + ':stats', 'networkProtocolVersion', result[0].response.protocolversion]);
                         }
-                        if (result[0].response.subversion !== null) {
+                        if (result[0].response.subversion !== null && result[0].response.subversion !== undefined) {
                             finalRedisCommands.push(['hset', coin + ':stats', 'networkSubVersion', result[0].response.subversion]);
-                        } else if (result[0].response.subversion === null) {
-                            finalRedisCommands.push(['hset', coin + ':stats', 'networkVersion', result[0].response.version])
                         }
                             if (finalRedisCommands.length <= 0)
                             return;

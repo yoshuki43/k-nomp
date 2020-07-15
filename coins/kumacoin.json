@@ -9,8 +9,8 @@
     "noNetworkInfo": true,
     "noGetnetworkhashps": true,
     "explorer": {
-        "txURL": "http://namuyan.dip.jp/MultiLightBlockExplorer/apis.php?data=kuma/api/block/tx/",
-        "blockURL": "http://namuyan.dip.jp/MultiLightBlockExplorer/apis.php?data=kuma/api/block/"
+        "txURL": "https://kumabook.electrum-mona.org/tx/",
+        "blockURL": "https://kumabook.electrum-mona.org/block/"
     }
 }
 
