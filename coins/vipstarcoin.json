@@ -1,9 +1,0 @@
-{
-    "name": "VIPSTARCOIN",
-    "symbol": "VIPS",
-    "algorithm": "vipstar",
-    "peerMagic": "012ce7b5",
-    "peerMagicTestnet": "1a2b3c4d",
-    "blockTime": 120,
-    "POS": true
-}
