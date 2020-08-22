@@ -1,21 +1,10 @@
 # BitZeny - Node Open Mining Portal
 [![Join the chat at https://github.com/ROZ-MOFUMOFU-ME/zny-nomp/](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/ROZ-MOFUMOFU-ME/zny-nomp?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Matrix](https://img.shields.io/matrix/zny-nomp:matrix.mofumofu.me?label=matrix)](https://app.element.io/#/room/#zny-nomp:matrix.mofumofu.me)
 [![Build Status](https://travis-ci.com/ROZ-MOFUMOFU-ME/zny-nomp.svg?branch=main)](https://travis-ci.org/ROZ-MOFUMOFU-ME/zny-nomp) 
 [![CircleCI](https://circleci.com/gh/ROZ-MOFUMOFU-ME/zny-nomp/tree/main.svg?style=svg)](https://circleci.com/gh/ROZ-MOFUMOFU-ME/zny-nomp/tree/main)
 
 This is a Yescrypt, YesPoWer, Lyra2REv2, sha256d and more algo mining pool based off of Node Open Mining Portal.
-
-Donations for development are greatly appreciated!
-  * ZNY: ZmnBu9jPKvVFL22PcwMHSEuVpTxFeCdvNv
-  * NUKO: 0xa79bde46faab3c40632604728e9f2165b052581c
-  * KOTO :k1FTuimwDJ8oo3x23cEBLxovxw5Cqq2U1HK
-  * SUSU: SeXbMBaax7NgnTEFEMxin5ycXy9r9CDBot
-  * MONA: mona1qnur6ljkl5pe8w6ql8xfqw4aa38d5xa9q68dxll
-  * BELL: BCVicYRSqKKt1ynJKPrXHA46hUWLrbjR49
-  * SUGAR: sugar1qtwqle9lrr753kxuzqqsh3hv28jl07e3mntx78n
-  * VIPS: VFixsia2EstV4uEEigUXUrknDGsFeWyNhE
-  * KUMA: KHjjZ5misqq45zwhj86WKqV8bzqcYExzyM
-  * BTC: 3C8oCWjVs2sycQcK3ttiPRSKV4AKBhC7xT
   
 #### Production Usage Notice
 This is beta software. All of the following are things that can change and break an existing ZNY-NOMP setup: functionality of any feature, structure of configuration files and structure of redis data. If you use this software in production then *DO NOT* pull new code straight into production usage because it can and often will break your setup and require you to tweak things like config files or redis data. *Only tagged releases are considered stable.*
@@ -86,13 +75,214 @@ Clone the repository and run `npm update` for all the dependencies to be install
 
 ```bash
 sudo apt-get install build-essential libsodium-dev npm libboost-all-dev libgmp-dev
+sudo apt install nodejs node-gyp libssl1.0-dev -y
+sudo apt install npm -y
 sudo npm install n -g
-sudo n v9
+sudo n v12
+sudo apt purge nodejs npm -y
+sudo ln -sf /usr/local/bin/node /usr/bin/node 
+sudo ln -sf /usr/local/bin/npm /usr/bin/npm 
 git clone https://github.com/ROZ-MOFUMOFU-ME/zny-nomp
 cd zny-nomp
-npm update
 npm install
 ```
+
+#### 2) Configuration
+
+##### Portal config
+Inside the `config_example.json` file, ensure the default configuration will work for your environment, then copy the file to `config.json`.
+
+Explanation for each field:
+````javascript
+{
+    /* Specifies the level of log output verbosity. Anything more severe than the level specified
+       will also be logged. */
+    "logLevel": "debug", //or "warning", "error"
+    
+    /* By default the server logs to console and gives pretty colors. If you direct that output to a
+       log file then disable this feature to avoid nasty characters in your log file. */
+    "logColors": true, 
+
+    /* The server CLI (command-line interface) will listen for commands on this port. For example,
+       blocknotify messages are sent to the server through this. */
+    "cliPort": 17117,
+
+    /* By default 'forks' is set to "auto" which will spawn one process/fork/worker for each CPU
+       core in your system. Each of these workers will run a separate instance of your pool(s),
+       and the kernel will load balance miners using these forks. Optionally, the 'forks' field
+       can be a number for how many forks will be spawned. */
+    "clustering": {
+        "enabled": true,
+        "forks": "auto"
+    },
+    
+    /* Pool config file will inherit these default values if they are not set. */
+    "defaultPoolConfigs": {
+    
+        /* Poll RPC daemons for new blocks every this many milliseconds. */
+        "blockRefreshInterval": 1000,
+        
+        /* If no new blocks are available for this many seconds update and rebroadcast job. */
+        "jobRebroadcastTimeout": 55,
+        
+        /* Disconnect workers that haven't submitted shares for this many seconds. */
+        "connectionTimeout": 600,
+        
+        /* (For MPOS mode) Store the block hashes for shares that aren't block candidates. */
+        "emitInvalidBlockHashes": false,
+        
+        /* This option will only authenticate miners using an address or mining key. */
+        "validateWorkerUsername": true,
+        
+        /* Enable for client IP addresses to be detected when using a load balancer with TCP
+           proxy protocol enabled, such as HAProxy with 'send-proxy' param:
+           http://haproxy.1wt.eu/download/1.5/doc/configuration.txt */
+        "tcpProxyProtocol": false,
+        
+        /* If under low-diff share attack we can ban their IP to reduce system/network load. If
+           running behind HAProxy be sure to enable 'tcpProxyProtocol', otherwise you'll end up
+           banning your own IP address (and therefore all workers). */
+        "banning": {
+            "enabled": true,
+            "time": 600, //How many seconds to ban worker for
+            "invalidPercent": 50, //What percent of invalid shares triggers ban
+            "checkThreshold": 500, //Perform check when this many shares have been submitted
+            "purgeInterval": 300 //Every this many seconds clear out the list of old bans
+        },
+        
+        /* Used for storing share and block submission data and payment processing. */
+        "redis": {
+            "host": "127.0.0.1",
+            "port": 6379
+        }
+    },
+
+    /* This is the front-end. Its not finished. When it is finished, this comment will say so. */
+    "website": {
+        "enabled": true,
+        /* If you are using a reverse-proxy like nginx to display the website then set this to
+           127.0.0.1 to not expose the port. */
+        "host": "0.0.0.0",
+        "port": 80,
+        /* Used for displaying stratum connection data on the Getting Started page. */
+        "stratumHost": "cryppit.com",
+        "stats": {
+            /* Gather stats to broadcast to page viewers and store in redis for historical stats
+               every this many seconds. */
+            "updateInterval": 15,
+            /* How many seconds to hold onto historical stats. Currently set to 24 hours. */
+            "historicalRetention": 43200,
+            /* How many seconds worth of shares should be gathered to generate hashrate. */
+            "hashrateWindow": 300
+        },
+        /* Not done yet. */
+        "adminCenter": {
+            "enabled": true,
+            "password": "password"
+        }
+    },
+
+    /* Redis instance of where to store global portal data such as historical stats, proxy states,
+       ect.. */
+    "redis": {
+        "host": "127.0.0.1",
+        "port": 6379
+    },
+
+
+    /* With this switching configuration, you can setup ports that accept miners for work based on
+       a specific algorithm instead of a specific coin. Miners that connect to these ports are
+       automatically switched a coin determined by the server. The default coin is the first
+       configured pool for each algorithm and coin switching can be triggered using the
+       cli.js script in the scripts folder.
+
+       Miners connecting to these switching ports must use their public key in the format of
+       RIPEMD160(SHA256(public-key)). An address for each type of coin is derived from the miner's
+       public key, and payments are sent to that address. */
+    "switching": {
+        "switch1": {
+            "enabled": false,
+            "algorithm": "sha256",
+            "ports": {
+                "3333": {
+                    "diff": 10,
+                    "varDiff": {
+                        "minDiff": 16,
+                        "maxDiff": 512,
+                        "targetTime": 15,
+                        "retargetTime": 90,
+                        "variancePercent": 30
+                    }
+                }
+            }
+        },
+        "switch2": {
+            "enabled": false,
+            "algorithm": "scrypt",
+            "ports": {
+                "4444": {
+                    "diff": 10,
+                    "varDiff": {
+                        "minDiff": 16,
+                        "maxDiff": 512,
+                        "targetTime": 15,
+                        "retargetTime": 90,
+                        "variancePercent": 30
+                    }
+                }
+            }
+        },
+        "switch3": {
+            "enabled": false,
+            "algorithm": "x11",
+            "ports": {
+                "5555": {
+                    "diff": 0.001
+                }
+            }
+        }
+    },
+
+    "profitSwitch": {
+        "enabled": false,
+        "updateInterval": 600,
+        "depth": 0.90,
+        "usePoloniex": true,
+        "useCryptsy": true,
+        "useMintpal": true
+    }
+}
+````
+
+
+##### Coin config
+Inside the `coins` directory, ensure a json file exists for your coin. If it does not you will have to create it.
+Here is an example of the required fields:
+````javascript
+{
+    "name": "BitZeny",
+    "symbol": "ZNY",
+    "algorithm": "yescryptR8",
+
+    // Coinbase value is what is added to a block when it is mined, set this to your pool name so 
+    // explorers can see which pool mined a particular block.
+    "coinbase": "Bitzeny",
+    /* Magic value only required for setting up p2p block notifications. It is found in the daemon
+       source code as the pchMessageStart variable.
+       For example, BitZeny mainnet magic: https://github.com/BitzenyCoreDevelopers/bitzeny/blob/z2.0.x/src/chainparams.cpp#L114
+       And for BitZeny testnet magic: https://github.com/BitzenyCoreDevelopers/bitzeny/blob/z2.0.x/src/chainparams.cpp#L206 */
+    "peerMagic": "daa5bef9", //optional
+    "peerMagicTestnet": "59454e59" //optional
+
+    //"txMessages": false, //options - defaults to false
+
+    //"mposDiffMultiplier": 256, //options - only for x11 coins in mpos mode
+}
+````
+
+For additional documentation how to configure coins and their different algorithms
+see [these instructions](//github.com/AoD-Technologies/cryptocurrency-stratum-pool#module-usage).
+
 
 ##### Pool config
 Take a look at the example json file inside the `pool_configs` directory. Rename it to `bitzeny.json` and change the
@@ -146,6 +336,19 @@ the `node-stratum-pool` and `node-multi-hashing` modules, and any config files t
 * Run `npm update` to force updating/reinstalling of the dependencies.
 * Compare your `config.json` and `pool_configs/coin.json` configurations to the latest example ones in this repo or the ones in the setup instructions where each config field is explained. <b>You may need to modify or add any new changes.</b>
 
+Donations
+-------
+ Donations for development are greatly appreciated!
+  * ZNY: ZmnBu9jPKvVFL22PcwMHSEuVpTxFeCdvNv
+  * NUKO: 0xa79bde46faab3c40632604728e9f2165b052581c
+  * KOTO :k1FTuimwDJ8oo3x23cEBLxovxw5Cqq2U1HK
+  * SUSU: SeXbMBaax7NgnTEFEMxin5ycXy9r9CDBot
+  * MONA: mona1qnur6ljkl5pe8w6ql8xfqw4aa38d5xa9q68dxll
+  * BELL: BCVicYRSqKKt1ynJKPrXHA46hUWLrbjR49
+  * SUGAR: sugar1qtwqle9lrr753kxuzqqsh3hv28jl07e3mntx78n
+  * VIPS: VFixsia2EstV4uEEigUXUrknDGsFeWyNhE
+  * KUMA: KHjjZ5misqq45zwhj86WKqV8bzqcYExzyM
+  * BTC: 3C8oCWjVs2sycQcK3ttiPRSKV4AKBhC7xT
 
 Credits
 -------
@@ -153,7 +356,10 @@ Credits
 * [ROZ-MOFUMOFU-ME](https://github.com/ROZ-MOFUMOFU-ME)
 * [zinntikumugai](https://github.com/zinntikumugai) - great supporter
 
-### s-nomp
+### cryptocurrency-stratum-pool
+* [Invader444](//github.com/Invader444)
+
+### S-NOMP
 * [egyptianbman](https://github.com/egyptianbman)
 * [nettts](https://github.com/nettts)
 * [potato](https://github.com/zzzpotato)
