@@ -18,7 +18,7 @@
             "last": 2123999
         }
     ],
-    "txfee": 0.0004,
+    "txfee": 0.0001,
     "blockTime": 60,
     "peerMagic": "4b6f746f",
     "peerMagicTestnet": "546f6b6f",

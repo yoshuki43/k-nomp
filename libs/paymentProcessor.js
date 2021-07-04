@@ -48,6 +48,9 @@ function SetupForPool(logger, poolOptions, setupFinished){
     var logSystem = 'Payments';
     var logComponent = coin;
 
+    // default tx fee
+    var txFee = 1000;
+
     var opidCount = 0;
     var opids = [];
 
@@ -255,7 +258,7 @@ function SetupForPool(logger, poolOptions, setupFinished){
             logger.error(logSystem, logComponent, 'tBalance === NaN for sendTToZ');
             return;
         }
-        if ((tBalance - 10000) <= 0)
+        if ((tBalance - txFee) <= 0)
             return;
 
         // do not allow more than a single z_sendmany operation at a time
@@ -264,7 +267,7 @@ function SetupForPool(logger, poolOptions, setupFinished){
             return;
         }
 
-        var amount = satoshisToCoins(tBalance - 10000);
+        var amount = satoshisToCoins(tBalance - txFee);
         var params = [poolOptions.address, [{'address': poolOptions.zAddress, 'amount': amount}]];
         daemon.cmd('z_sendmany', params,
             function (result) {
@@ -294,7 +297,7 @@ function SetupForPool(logger, poolOptions, setupFinished){
             logger.error(logSystem, logComponent, 'zBalance === NaN for sendZToT');
             return;
         }
-        if ((zBalance - 10000) <= 0)
+        if ((zBalance - txFee) <= 0)
             return;
 
         // do not allow more than a single z_sendmany operation at a time
@@ -303,12 +306,12 @@ function SetupForPool(logger, poolOptions, setupFinished){
             return;
         }
 
-        var amount = satoshisToCoins(zBalance - 10000);
+        var amount = satoshisToCoins(zBalance - txFee);
         // unshield no more than 100 KOTO at a time
         if (amount > 100.0)
             amount = 100.0;
 
-        var params = [poolOptions.zAddress, [{'address': poolOptions.tAddress, 'amount': amount}]];
+        var params = [poolOptions.zAddress, [{ 'address': poolOptions.tAddress, 'amount': amount }], minConf, satoshisToCoins(txFee)];
         daemon.cmd('z_sendmany', params,
             function (result) {
                 //Check if payments failed because wallet doesn't have enough coins to pay for tx fees
